@@ -1,0 +1,96 @@
+package com.echo.web.model;
+
+
+import java.util.Date;
+
+public class OnlineStudent {
+    private Integer studentId;
+
+    private String studentName;
+
+    private String studentNickename;
+
+    private String studentPasswd;
+
+    private String studentSex;
+
+    private String studentPhone;
+
+    private Date studentBirthday;
+
+    private Date studentStartdate;
+
+    private Date studentCreatetime;
+
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName == null ? null : studentName.trim();
+    }
+
+    public String getStudentNickename() {
+        return studentNickename;
+    }
+
+    public void setStudentNickename(String studentNickename) {
+        this.studentNickename = studentNickename == null ? null : studentNickename.trim();
+    }
+
+    public String getStudentPasswd() {
+        return studentPasswd;
+    }
+
+    public void setStudentPasswd(String studentPasswd) {
+        this.studentPasswd = studentPasswd == null ? null : studentPasswd.trim();
+    }
+
+    public String getStudentSex() {
+        return studentSex;
+    }
+
+    public void setStudentSex(String studentSex) {
+        this.studentSex = studentSex == null ? null : studentSex.trim();
+    }
+
+    public String getStudentPhone() {
+        return studentPhone;
+    }
+
+    public void setStudentPhone(String studentPhone) {
+        this.studentPhone = studentPhone == null ? null : studentPhone.trim();
+    }
+
+    public Date getStudentBirthday() {
+        return studentBirthday;
+    }
+
+    public void setStudentBirthday(Date studentBirthday) {
+        this.studentBirthday = studentBirthday;
+    }
+
+    public Date getStudentStartdate() {
+        return studentStartdate;
+    }
+
+    public void setStudentStartdate(Date studentStartdate) {
+        this.studentStartdate = studentStartdate;
+    }
+
+    public Date getStudentCreatetime() {
+        return studentCreatetime;
+    }
+
+    public void setStudentCreatetime(Date studentCreatetime) {
+        this.studentCreatetime = studentCreatetime;
+    }
+}

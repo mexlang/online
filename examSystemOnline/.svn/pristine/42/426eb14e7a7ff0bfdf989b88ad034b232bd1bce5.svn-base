@@ -1,0 +1,81 @@
+package com.echo.web.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.echo.web.model.OnlineClass;
+import com.echo.web.serivce.OnlineClassService;
+
+/*
+ * 班级的操作
+ * 
+ */
+@Controller
+@RequestMapping(value="/class")
+public class ClassControl {
+	
+	@Autowired
+	public OnlineClassService classService;
+	@Autowired
+	public OnlineClass onlineClass;
+	
+	
+	/**
+	 * 保存班级信息
+	 * @param onlineClass
+	 * @return
+	 */
+	@RequestMapping("insertClassinfo")
+	@ResponseBody
+	public OnlineClass insertClassInfo(OnlineClass onlineClass) {
+		classService.insertClass(onlineClass);
+		return onlineClass;
+	}
+	/**
+	 * 查询所有班级   
+	 * 返回List    table       
+	 * @param model
+	 * @return
+	 * @throws InterruptedException 
+	 */
+	@RequestMapping("queryAllClassInfo")
+	public String queryClassInfo(Model model) throws InterruptedException {
+		List<OnlineClass> classList = classService.queryAllClass();
+		model.addAttribute("classList", classList);
+		new Thread().sleep(5000);
+		return "/pages/classChoice";
+	}	
+	
+	
+	
+	
+	
+	/**
+	 * 删除班级信息
+	 * @param classId
+	 * @return
+	 */
+	@RequestMapping("deleteClass")
+	@ResponseBody
+	public int deleteClass(Integer classId) {
+		int count = classService.deleteClass(classId);
+		return count;
+	}
+	/**
+	 * 
+	 * 更新班级信息
+	 * @param onlineClass
+	 * @return
+	 */
+	@RequestMapping("updataClass")
+	@ResponseBody
+	public Integer updataClass(OnlineClass onlineClass) {
+		int result = classService.updataClass(onlineClass);
+		return result;
+	}
+}

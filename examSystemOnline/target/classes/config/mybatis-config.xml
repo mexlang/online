@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE configuration  
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">  
+<configuration>  
+<!--  自定义别名定义一个 javaBean  的名称 在 *mapper中使用  在spring管理 自己管理 -->
+   <typeAliases>
+ <package name="com.echo.web.model"/>
+   </typeAliases>
+   <!-- mapping 文件路径配置 用spring 管理 -->  
+   <mappers>
+   <package name="com.echo.web.mapper"/>
+   </mappers>
+</configuration>
+  

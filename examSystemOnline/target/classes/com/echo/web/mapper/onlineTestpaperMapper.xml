@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.echo.web.mapper.onlineTestpaperMapper" >
+  <resultMap id="BaseResultMap" type="com.echo.web.model.onlineTestpaper" >
+    <id column="paper_id" property="paperId" jdbcType="INTEGER" />
+    <result column="pager_name" property="pagerName" jdbcType="VARCHAR" />
+    <result column="teacher_id" property="teacherId" jdbcType="INTEGER" />
+    <result column="pager_createTime" property="pagerCreatetime" jdbcType="TIMESTAMP" />
+    <result column="pager_flag" property="pagerFlag" jdbcType="INTEGER" />
+    <result column="pager_year" property="pagerYear" jdbcType="VARCHAR" />
+    <result column="pager_startTime" property="pagerStarttime" jdbcType="TIMESTAMP" />
+    <result column="pager_endTime" property="pagerEndtime" jdbcType="TIMESTAMP" />
+    <result column="pager_score" property="pagerScore" jdbcType="INTEGER" />
+    <result column="pager_totalTime" property="pagerTotaltime" jdbcType="INTEGER" />
+    <result column="pager_results" property="pagerResults" jdbcType="VARCHAR" />
+    <result column="manager_id" property="managerId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="paper_difficulty" property="paperDifficulty" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    paper_id, pager_name, teacher_id, pager_createTime, pager_flag, pager_year, pager_startTime, 
+    pager_endTime, pager_score, pager_totalTime, pager_results, manager_id, create_time, 
+    paper_difficulty
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from online_testpaper
+    where paper_id = #{paperId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from online_testpaper
+    where paper_id = #{paperId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.echo.web.model.onlineTestpaper" >
+    insert into online_testpaper (paper_id, pager_name, teacher_id, 
+      pager_createTime, pager_flag, pager_year, 
+      pager_startTime, pager_endTime, pager_score, 
+      pager_totalTime, pager_results, manager_id, 
+      create_time, paper_difficulty)
+    values (#{paperId,jdbcType=INTEGER}, #{pagerName,jdbcType=VARCHAR}, #{teacherId,jdbcType=INTEGER}, 
+      #{pagerCreatetime,jdbcType=TIMESTAMP}, #{pagerFlag,jdbcType=INTEGER}, #{pagerYear,jdbcType=VARCHAR}, 
+      #{pagerStarttime,jdbcType=TIMESTAMP}, #{pagerEndtime,jdbcType=TIMESTAMP}, #{pagerScore,jdbcType=INTEGER}, 
+      #{pagerTotaltime,jdbcType=INTEGER}, #{pagerResults,jdbcType=VARCHAR}, #{managerId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{paperDifficulty,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.echo.web.model.onlineTestpaper" >
+    insert into online_testpaper
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="paperId != null" >
+        paper_id,
+      </if>
+      <if test="pagerName != null" >
+        pager_name,
+      </if>
+      <if test="teacherId != null" >
+        teacher_id,
+      </if>
+      <if test="pagerCreatetime != null" >
+        pager_createTime,
+      </if>
+      <if test="pagerFlag != null" >
+        pager_flag,
+      </if>
+      <if test="pagerYear != null" >
+        pager_year,
+      </if>
+      <if test="pagerStarttime != null" >
+        pager_startTime,
+      </if>
+      <if test="pagerEndtime != null" >
+        pager_endTime,
+      </if>
+      <if test="pagerScore != null" >
+        pager_score,
+      </if>
+      <if test="pagerTotaltime != null" >
+        pager_totalTime,
+      </if>
+      <if test="pagerResults != null" >
+        pager_results,
+      </if>
+      <if test="managerId != null" >
+        manager_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="paperDifficulty != null" >
+        paper_difficulty,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="paperId != null" >
+        #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="pagerName != null" >
+        #{pagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=INTEGER},
+      </if>
+      <if test="pagerCreatetime != null" >
+        #{pagerCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pagerFlag != null" >
+        #{pagerFlag,jdbcType=INTEGER},
+      </if>
+      <if test="pagerYear != null" >
+        #{pagerYear,jdbcType=VARCHAR},
+      </if>
+      <if test="pagerStarttime != null" >
+        #{pagerStarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pagerEndtime != null" >
+        #{pagerEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pagerScore != null" >
+        #{pagerScore,jdbcType=INTEGER},
+      </if>
+      <if test="pagerTotaltime != null" >
+        #{pagerTotaltime,jdbcType=INTEGER},
+      </if>
+      <if test="pagerResults != null" >
+        #{pagerResults,jdbcType=VARCHAR},
+      </if>
+      <if test="managerId != null" >
+        #{managerId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paperDifficulty != null" >
+        #{paperDifficulty,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.echo.web.model.onlineTestpaper" >
+    update online_testpaper
+    <set >
+      <if test="pagerName != null" >
+        pager_name = #{pagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        teacher_id = #{teacherId,jdbcType=INTEGER},
+      </if>
+      <if test="pagerCreatetime != null" >
+        pager_createTime = #{pagerCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pagerFlag != null" >
+        pager_flag = #{pagerFlag,jdbcType=INTEGER},
+      </if>
+      <if test="pagerYear != null" >
+        pager_year = #{pagerYear,jdbcType=VARCHAR},
+      </if>
+      <if test="pagerStarttime != null" >
+        pager_startTime = #{pagerStarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pagerEndtime != null" >
+        pager_endTime = #{pagerEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pagerScore != null" >
+        pager_score = #{pagerScore,jdbcType=INTEGER},
+      </if>
+      <if test="pagerTotaltime != null" >
+        pager_totalTime = #{pagerTotaltime,jdbcType=INTEGER},
+      </if>
+      <if test="pagerResults != null" >
+        pager_results = #{pagerResults,jdbcType=VARCHAR},
+      </if>
+      <if test="managerId != null" >
+        manager_id = #{managerId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paperDifficulty != null" >
+        paper_difficulty = #{paperDifficulty,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where paper_id = #{paperId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.echo.web.model.onlineTestpaper" >
+    update online_testpaper
+    set pager_name = #{pagerName,jdbcType=VARCHAR},
+      teacher_id = #{teacherId,jdbcType=INTEGER},
+      pager_createTime = #{pagerCreatetime,jdbcType=TIMESTAMP},
+      pager_flag = #{pagerFlag,jdbcType=INTEGER},
+      pager_year = #{pagerYear,jdbcType=VARCHAR},
+      pager_startTime = #{pagerStarttime,jdbcType=TIMESTAMP},
+      pager_endTime = #{pagerEndtime,jdbcType=TIMESTAMP},
+      pager_score = #{pagerScore,jdbcType=INTEGER},
+      pager_totalTime = #{pagerTotaltime,jdbcType=INTEGER},
+      pager_results = #{pagerResults,jdbcType=VARCHAR},
+      manager_id = #{managerId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      paper_difficulty = #{paperDifficulty,jdbcType=VARCHAR}
+    where paper_id = #{paperId,jdbcType=INTEGER}
+  </update>
+  <!-- 分页查询试卷 -->
+  <select id="queryTestForpape" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  
+   SELECT <include refid="Base_Column_List" /> FROM online_testpaper  ORDER BY `paper_id` limit #{0} , #{1}
+  </select>
+  <!-- 试卷总数 -->
+   <select id="queryStudntForChapterCount" resultType="int" >
+    select count(1)  from online_testpaper 
+  </select>
+  
+  
+  <!-- 查询全部试卷 -->
+  <select id="queryAllTestpape" resultMap="BaseResultMap" >
+  
+   SELECT <include refid="Base_Column_List" /> FROM online_testpaper 
+  </select>
+  
+  <select id="selectByStudentIdForPage" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	SELECT 
+   a.paper_id ,a.pager_name , a.pager_startTime ,  b.`student_totalScope` as 'examinInfor.studentTotalscope'
+   FROM 
+  online_testpaper a 
+  LEFT JOIN online_examin_infor b 
+    ON a.paper_id = b.paper_id
+    WHERE b.`student_id`=#{0}
+  </select>
+  
+  
+  
+  
+  
+   <select id="selectByStudentForTeset" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	SELECT 
+   a.paper_id ,a.pager_name , a.pager_startTime 
+   FROM 
+  online_testpaper a 
+  LEFT JOIN online_examin_infor b 
+    ON a.paper_id = b.paper_id
+    WHERE b.`student_id`=#{0}
+  </select>
+</mapper>
