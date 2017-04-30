@@ -3,6 +3,9 @@ package com.echo.web.model;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class OnlineStudent {
     private Integer studentId;
 

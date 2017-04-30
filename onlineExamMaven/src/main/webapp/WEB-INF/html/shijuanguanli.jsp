@@ -30,13 +30,12 @@
                     试卷管理
                     </a>
                     </li>
-                    <li class="active">
-                    <a style="" href="${pageContext.request.contextPath}/shijuanInfo">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新建考试向导<<<
-					</a>
+                    <li class="active">考试列表
 					</li>
                 </ul>
             </div>
+            <a href="${pageContext.request.contextPath}/shijuanInfo" >
+            <button style="margin:20px 25px;padding:7px 15px;">点击新建考试</button></a>
             <div class="page-content" id="tableAdd">
 
                 <!-- 插入位置 -->
@@ -69,8 +68,6 @@ function overlay(){
 
 <script type="text/javascript">
 
-
-
 $(document).ready(function(){
 	queryAllClassInfo();
 });
@@ -78,16 +75,18 @@ $(document).ready(function(){
 /* 保存题号到数据库 */
 function queryAllClassInfo(){
 	
-	  $.post("${pageContext.request.contextPath}/TestPaper/queryAllTestPaperTitleInfo",{},
+	  $.post("${pageContext.request.contextPath}/TestPaper/queryAllTestPaperTitleInfo",
+			  {},
 			  function(data){
 		  $("#tableAdd").empty().html(data);
 	  });
 }
-
+/* 删除 */
 function deleteTestPaperTitleInfo(paperId) {
-	alert("正在删除>>>");
 	$.post("${pageContext.request.contextPath}/TestPaper/deleteTestPaperTitleInfo",
-			{paperId:paperId},
+			{
+		paperId:paperId
+			},
 			function(data){
 				queryAllClassInfo();
 	});

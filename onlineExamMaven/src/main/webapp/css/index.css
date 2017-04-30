@@ -1,7 +1,8 @@
-*{margin: 0;padding: 0}
-/*头部*/
+*{margin: 0;padding: 0;-webkit-box-sizing: content-box;}
+/*澶撮儴*/
 .header{
-    width: auto;
+    /*width: auto;*/
+    max-width: 1400px;
     min-width: 1200px;
     height: 44px;
     background-color: #438EB9;
@@ -28,17 +29,16 @@
 }
 .back{
     float: right;
-    line-height: 30px;
+    line-height: 17px;
 }
 .back a{
     color: #fff
 }
 .back img{
-    margin-top: 5px;
     display:block ;
     float: left;
 }
-/*右边主内容*/
+/*鍙宠竟涓诲唴瀹�/
 .mainRight{
     width: 82%;
     min-width: 940px;
@@ -46,7 +46,7 @@
     float: left;
     margin-left: 5px;
 }
-/*右边导航*/
+/*鍙宠竟瀵艰埅*/
 .mainRight .nav{
     width: auto;
     padding: 10px;
@@ -60,16 +60,15 @@
     float: right;
     margin-right: 20px;
 }
-/*主内容*/
+/*涓诲唴瀹�/
 .main-content{
     width: auto;
-    height: auto;
-    overflow: hidden;
+    height: 500px;
     border-radius: 3px;
     /*border: #F0F0F2 2px solid;*/
-    /*margin-top: 10px;*/
+    margin-top: 10px;
 }
-/*首页主内容*/
+/*棣栭〉涓诲唴瀹�/
 .mainContent{
     width: 260px;
     height: 200px;
@@ -93,11 +92,11 @@
 .main-content4{
 }
 
-/*历史成绩*/
+/*鍘嗗彶鎴愮哗*/
 .testShow{
     margin-top: 10px;
 }
-/*考试*/
+/*鑰冭瘯*/
 .exam-time{
     width: 100%;
     padding: 10px;
@@ -133,7 +132,7 @@
     border-radius: 5px;
     margin: 20px auto;
 }
-/*成绩分析*/
+/*鎴愮哗鍒嗘瀽*/
 
 .content h3{
     width: 100%;
@@ -155,6 +154,5 @@
     text-align: center;
     padding: 7px;
     border-radius: 5px;
-    display:block;
-    margin: 20px auto;、
+    margin: 20px auto;
 }

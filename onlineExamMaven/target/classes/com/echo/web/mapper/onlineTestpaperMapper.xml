@@ -214,27 +214,4 @@
    SELECT <include refid="Base_Column_List" /> FROM online_testpaper 
   </select>
   
-  <select id="selectByStudentIdForPage" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-	SELECT 
-   a.paper_id ,a.pager_name , a.pager_startTime ,  b.`student_totalScope` as 'examinInfor.studentTotalscope'
-   FROM 
-  online_testpaper a 
-  LEFT JOIN online_examin_infor b 
-    ON a.paper_id = b.paper_id
-    WHERE b.`student_id`=#{0}
-  </select>
-  
-  
-  
-  
-  
-   <select id="selectByStudentForTeset" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-	SELECT 
-   a.paper_id ,a.pager_name , a.pager_startTime 
-   FROM 
-  online_testpaper a 
-  LEFT JOIN online_examin_infor b 
-    ON a.paper_id = b.paper_id
-    WHERE b.`student_id`=#{0}
-  </select>
 </mapper>

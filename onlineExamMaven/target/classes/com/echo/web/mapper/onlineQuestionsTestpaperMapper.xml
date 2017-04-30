@@ -42,13 +42,7 @@
     
   </select>
   
- <!-- 根据试卷id查询试题id -->
-    <select id="selectPaperShowQuestion"  resultType="int">
-    SELECT  question_id FROM  online_questions_testpaper where  paper_id = #{0} 
-     GROUP BY 
-    question_id
-    
-  </select>
+
   
   
  

@@ -26,7 +26,7 @@
   </sql>
   
   <sql id="Base_Column_List1" >
-    b.`question_id` questionId, question_type questionType, question_name questionName, question_difficulty questionDifficulty, question_answer questionAnswer, 
+    b.`question_id` questionId, b.question_type questionType, b.question_name questionName, question_difficulty questionDifficulty, question_answer questionAnswer, 
     question_option questionOption, question_flag questionFlag, DATE_FORMAT(question_createTime,"%Y-%m-%d %H:%i:%s") questionCreateTime, question_effective questionEffective, question_chater questionChater, 
     question_score questionScore,question_photo questionPhoto
   </sql>
@@ -267,19 +267,5 @@
     
     WHERE a.`paper_id`=#{1} AND b.`question_type`=#{0} 
   </select>
-  
-  <!-- 根据试卷id查询题库 -->
-   <select id="selectByPaperId" resultType="com.echo.web.model.OnlineQuestions">
-	SELECT 
-   <include refid="Base_Column_List1"/>
-   FROM (
-  online_questions a 
-  LEFT JOIN online_questions_testpaper b 
-    ON a.`question_id` = b.`question_id`) LEFT JOIN online_testpaper c on b.paper_id = c.paper_id 
-    
-    WHERE c.`paper_id`=#{1}  
-  </select>
-  
-  
   
 </mapper>

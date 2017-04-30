@@ -1,16 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<style>
-	#pageLimit{
-		width:500px;
-		margin:10px auto;
-		over-flow:hidden;
-	
-	}
-	#pageLimit li{
-		float:left;
-		width:45px;
-	}
-</style>
+
 
 
 
@@ -69,7 +58,7 @@
 	                        },//点击事件，用于通过Ajax来刷新整个list列表
 	                        onPageClicked: function (event, originalEvent, type, page){
 	                           startPageTemp=page;
-	                           $.post("${pageContext.request.contextPath}/studentExam/StudentSelectPage",{startPage:page,pageSize:pageSizeTemp},
+	                           $.post("${pageContext.request.contextPath}/studentExam/StudentSelectPage",{startPage:page,pageSize:pageSizeTemp,studentSelectType:studentSelectType},
 	                          function(data){
 	                            
 	                            $("#studentAjaxPages").empty().append(data);

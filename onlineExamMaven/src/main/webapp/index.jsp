@@ -15,12 +15,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
  <body>
  <h1>hello!my world.</h1>
-     <script type="text/javascript">
-     $.document{
-    setTimeout("http://localhost:8080/examSystemOnline/swagger-ui.html",1000);
-     };
-     </script>
-<a href="${pageContext.request.contextPath}/html/public.jsp">返回上页</a>
+
+<a href="${pageContext.request.contextPath}/indexindex">返回首页</a>
+
+<script type="text/javascript">
+function countDown(secs,surl){
+ //alert(surl);
+ var jumpTo = document.getElementById('jumpTo');
+ jumpTo.innerHTML=secs;
+ if(--secs>0){
+     setTimeout("countDown("+secs+",'"+surl+"')",1000);
+     }
+ else{
+     location.href=surl;
+     }
+ }
+</script>
+</head>
+
+<body>
+
+<span id="jumpTo">5</span>秒后自动跳转到Swagger-UI
+<script type="text/javascript">
+countDown(5,'http://localhost:8080/examSystemOnline/swagger-ui.html');
+</script>
+
 </body>
 
 </html>

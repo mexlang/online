@@ -1,9 +1,0 @@
-com\echo\web\mapper\BkuserManagerMapper.class
-com\echo\web\util\common\MD5Helper.class
-com\echo\web\controller\HelloWordController.class
-com\echo\web\util\calculate\CarServiceChargeUtil.class
-com\echo\web\model\BkuserManager.class
-com\echo\web\util\mybatis\MybatisUtils.class
-com\echo\web\handler\SpringMVCInterceptor.class
-com\echo\web\controller\BkUserController.class
-com\echo\web\serivce\BkUserService.class

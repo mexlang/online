@@ -308,5 +308,32 @@ public class onlineQuestionTestpaperController  {
 		int result = testpaperService.automaticTestPaper(text_num1,text_num2,text_num3,text_num4,text_num5,paperId);
 		return String.valueOf(result);
 	}
+	
+	/**
+	 * 返回所有考试信息
+	 * 管理员端的试卷审核列表
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("queryAllTestPaperTitleInfoForAdmin")
+	public String queryAllTestPaperTitleInfoForAdmin (Model model) {
+		List<onlineTestpaper> result = testpaperBaseService.queryAllTestpaper();
+		model.addAttribute("resultList", result);
+		return "pages/guanliyuan/examination";
+	}
+	
+	/***
+	 * 
+	 * 审核考试
+	 * @param testpaper
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("updataTestpaperTitleInfo")
+	public String updataTestpaperTitleInfo (onlineTestpaper testpaper) {
+		boolean result = testpaperBaseService.updataTestpaper(testpaper);
+		logger.info("更新考试信息："+ result);
+		return "redirect:queryAllTestPaperTitleInfoForAdmin";
+	}
 
 }

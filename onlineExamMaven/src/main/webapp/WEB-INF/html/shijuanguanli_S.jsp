@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,14 +28,15 @@
                     <li class="active">试卷管理</li>
                 </ul>
             </div>
+          
             <div class="page-content"  id="clearDiv1">
                <ul class="she_ul" style="">
                    <li>考试名称：${result.pagerName}</li>
                    <li>试卷编号：${result.paperId}</li>
                    <li>考试班级：${result.teacherId}</li>
                    <li>试卷分值：${result.pagerScore}</li>
-                   <li>考试时间：${result.pagerStarttime}</li>
-                   <li>结束时间：${result.pagerEndtime}</li>
+                   <li>考试时间：<fmt:formatDate pattern="yyyy-MM-dd hh:mm"  value="${result.pagerStarttime}" /></li>
+                   <li>结束时间：<fmt:formatDate pattern="yyyy-MM-dd hh:mm"  value="${result.pagerEndtime}" /></li>
                    <li>考试时长：${result.pagerTotaltime}</li>
                </ul>
             </div>
@@ -95,7 +97,8 @@ function queryAllClassInfo(){
 /* 	查询所有组卷  */
 function queryAllPaperIdInfo(){
 	
-	  $.post("${pageContext.request.contextPath}/TestPaper/queryonlineTestpaperByGroup",{},
+	  $.post("${pageContext.request.contextPath}/TestPaper/queryonlineTestpaperByGroup",
+			  {},
 			  function(data){
 		  $("#modaldatainsert").empty().html(data);
 		  overlay();

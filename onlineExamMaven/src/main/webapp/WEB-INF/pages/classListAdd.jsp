@@ -2,7 +2,7 @@
 <%@  taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<h2 style="text-align: center;">当前考试信息</h2><br/>
+<br/>
                 <table style="margin-top: 10px">
                     <tr>
                         <td class="tr_head" style="width:5%;">序号</td>

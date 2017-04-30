@@ -47,8 +47,7 @@ public class ClassControl {
 	public String queryClassInfo(Model model) throws InterruptedException {
 		List<OnlineClass> classList = classService.queryAllClass();
 		model.addAttribute("classList", classList);
-//		new Thread().sleep(5000);
-		return "/pages/classChoice";
+		return "pages/classChoice";
 	}	
 	
 	

@@ -110,7 +110,7 @@
       <property name="poolConfig" ref="jedisPoolConfig"/>
     </bean>
 <!-- redis template definition -->
-<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
 		<property name="connectionFactory" ref="jedisConnectionFactory" />
 		<!-- 通过序列化 可以直接存储对象    如果不配置Serializer，那么存储的时候智能使用String，如果用Bean类型存储，那么会提示错误 javaBean can't cast to String！！！ -->
 		<property name="keySerializer" >

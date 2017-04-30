@@ -25,7 +25,7 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="public.jsp">首页</a>
+                        <a href="${pageContext.request.contextPath}/indexindex">首页</a>
                     </li>
                 </ul>
             </div>

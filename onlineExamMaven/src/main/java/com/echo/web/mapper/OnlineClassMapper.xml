@@ -11,7 +11,7 @@
     <result column="cloumn_two" property="cloumnTwo" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    class_id, class_name, student_id, paper_id, paper_flag, column_one, cloumn_two
+    class_id, class_name,  paper_id, paper_flag, column_one, cloumn_two
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -122,14 +122,5 @@
   <include refid="Base_Column_List"/>
   from 
   `online_class`
-  </select>
-  
-  
-  
-  <select id="selectClassByStudentId"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
-  select 
-  <include refid="Base_Column_List"/>
-  from 
-  `online_class` where student_id = #{studentId}
   </select>
 </mapper>
