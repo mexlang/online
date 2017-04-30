@@ -132,7 +132,7 @@
 	 <!--swagger  -->
 	    <mvc:annotation-driven/>
 	    <bean class="com.echo.web.util.common.SwaggerConfig" />
-    <!--swagger end -->
+    <!-- end -->
 	
 
 	
@@ -149,22 +149,16 @@
 	<mvc:view-controller path="/shijuanInfo" view-name="html/shijuanguanli_D"/>
 	<mvc:view-controller path="/showshijuanInfo" view-name="html/shijuanguanli_S"/>
 	<mvc:view-controller path="/showshijuanupdatainfo" view-name="pages/updatainfo"/>
-	<mvc:view-controller path="/shiti/xuanze" view-name="html/tiku_xuanze"/>
-	<mvc:view-controller path="/shiti/panduan" view-name="html/tiku_panduan"/>
-	<mvc:view-controller path="/shiti/tiankong" view-name="html/tiku_tiankong"/>
-	<mvc:view-controller path="/shiti/jianda" view-name="html/tiku_jianda"/>
-	<mvc:view-controller path="/shiti/sheji" view-name="html/tiku_sheji"/>
-	
-	
-	<mvc:view-controller path="/guanli/Index" view-name="pages/guanliyuan/glyIndex"/>
-
-
+	<mvc:view-controller path="/student" view-name="pages/student/xsdlndex"/>
+	<mvc:view-controller path="/login" view-name="pages/student/login"/>
+       
+       
        <!-- springmvc 拦截器 -->
-<mvc:interceptors>
-
+			<mvc:interceptors>
  <mvc:interceptor><mvc:mapping path="/bkUser/*"/> <bean class="com.echo.web.handler.SpringMVCInterceptor"/> </mvc:interceptor>
-
 </mvc:interceptors>
+
+
 
 	<!-- 告诉 springmvc 如果符合springmvc 配置请求地址进行拦截 否则 放行 走原有流程 -->
 	<!-- org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler， 

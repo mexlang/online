@@ -1,7 +1,5 @@
 package com.echo.web.mapper;
 
-import java.util.List;
-
 import com.echo.web.model.OnlineStudent;
 
 
@@ -20,9 +18,5 @@ public interface OnlineStudentMapper {
     int updateByPrimaryKey(OnlineStudent record);
     
     
-    OnlineStudent selectByStudent(Integer studentId,String  studentName,String studentPasswd);
-    
-    List<OnlineStudent> selectAllStudent();
-    
-    List<OnlineStudent> selectStudentForPage(Integer startPage,Integer pageSize);
+    OnlineStudent selectByStudent(Integer studentId);
 }

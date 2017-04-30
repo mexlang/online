@@ -60,7 +60,7 @@ body {
   position: relative;
   margin: 0;
   padding: 8px 20px 24px;
-  height: 600px;
+  height: auto;
   overflow: hidden;
 }
 .page-header {
@@ -12646,9 +12646,9 @@ td .lbl:only-child {
   background-color: #D2C5C5;
   background-color: rgba(120, 110, 100, 0.4);
 }
-.blur-login {
-  background: #394557 url('images/meteorshower2.jpg') repeat;
-}
+/*.blur-login {*/
+  /*background: #394557 url('images/meteorshower2.jpg') repeat;*/
+/*}*/
 .invoice-info {
   line-height: 24px !important;
   color: #444;

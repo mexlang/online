@@ -18,4 +18,6 @@ public interface OnlineClassMapper {
     int updateByPrimaryKey(OnlineClass record);
     
     List<OnlineClass> queryAllOnlineClass();
+
+	OnlineClass selectClassByStudentId(Integer studentId);
 }

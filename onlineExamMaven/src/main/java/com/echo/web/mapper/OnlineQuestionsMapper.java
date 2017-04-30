@@ -50,5 +50,8 @@ public interface OnlineQuestionsMapper {
 
 	List<Integer> selectAllDesignId();
 
+	List<OnlineQuestions> selectByPaperId(Integer paperId);
+
+
 
 }

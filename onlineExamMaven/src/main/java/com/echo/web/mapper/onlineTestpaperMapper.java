@@ -24,5 +24,7 @@ public interface onlineTestpaperMapper {
 
 	List<onlineTestpaper> queryAllTestpape();
     
-    
+	List<onlineTestpaper> selectByStudentIdForPage(Integer studentId);
+
+	List<onlineTestpaper> selectByStudentForTeset(Integer studentId);
 }

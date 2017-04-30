@@ -35,18 +35,35 @@ public class onlineTestpaper {
 
     private String paperDifficulty;
     
+    private onlineExaminInfor examinInfor;
 
-    private String StartTime1;
+    public onlineExaminInfor getExaminInfor() {
+		return examinInfor;
+	}
+
+	public void setExaminInfor(onlineExaminInfor examinInfor) {
+		this.examinInfor = examinInfor;
+	}
+
+	private String StartTime1;
     private String StartTime2;
     
     private String EndTime1;
     private String EndTime2;
     
-    
+    private Integer totalScore;
 
 	
 	   
-	    public String getStartTime1() {
+	    public Integer getTotalScore() {
+		return totalScore;
+	}
+
+	public void setTotalScore(Integer totalScore) {
+		this.totalScore = totalScore;
+	}
+
+		public String getStartTime1() {
 		return StartTime1;
 	}
 
