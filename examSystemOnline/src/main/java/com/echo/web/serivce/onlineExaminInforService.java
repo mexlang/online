@@ -48,12 +48,12 @@ public class onlineExaminInforService {
 		   *   
 		   * @return
 		   */
-		  public List<onlineExaminInfor> queryonlineExaminInforForPage(Integer type,Integer startPage,Integer pageSize) throws Exception{
+		  public List<onlineExaminInfor> queryonlineExaminInforForPage(Integer type,Integer startPage,Integer pageSize) {
 			  List<onlineExaminInfor> number = questionMapper.queryonlineExaminInforForPage(startPage, pageSize);
 			  return number;
 		  }
 		  
-		  public    int  queryonlineExaminInforForPageCount() throws Exception{
+		  public    int  queryonlineExaminInforForPageCount(){
 			  int number = questionMapper.queryonlineExaminInforForPageCount();
 			 return number;
 		  }

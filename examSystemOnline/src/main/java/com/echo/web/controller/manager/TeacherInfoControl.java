@@ -171,7 +171,7 @@ public class TeacherInfoControl {
 	 */
 	@RequestMapping("queryTeacher")
 	public String queryTeacher(
-			@RequestParam(defaultValue="1")Integer startPage,
+			@RequestParam(defaultValue="0")Integer startPage,
 			@RequestParam(defaultValue="3")Integer pageSize,
 			Model model) {
 		 List<OnlineTeacher> result = teacherService.queryAllTeacher();
@@ -193,7 +193,7 @@ public class TeacherInfoControl {
 			@RequestParam(defaultValue="1")Integer startPage,
 			@RequestParam(defaultValue="3")Integer pageSize,Model model) {
 		 int currentPage = (startPage - 1)*pageSize;
-		 List<OnlineTeacher> result = teacherService.queryAllTeacherforPage(startPage, pageSize);
+		 List<OnlineTeacher> result = teacherService.queryAllTeacherforPage(currentPage, pageSize);
 		 model.addAttribute("teacherList", result);
 		 model.addAttribute("currentPage", currentPage);
 		 return "pages/xxdr-techerAdd";

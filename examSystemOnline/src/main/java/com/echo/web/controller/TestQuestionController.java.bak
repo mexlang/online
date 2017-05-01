@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,69 +19,124 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.echo.web.model.OnlineQuestions;
+import com.echo.web.serivce.OnlineQuestionService;
 import com.echo.web.serivce.TeacherChoiceService;
+import com.google.gson.Gson;
+
+
+
+/****
+ * 
+ * 对试题的操作控制
+ * 
+ * @author mexlang 
+ *
+ */
 
 @Controller
-@RequestMapping("/teacherChoice")
-public class TeacherChoiceControl {
+@RequestMapping(value={"/question"}) //声明位置在类上  圈定一个功能模块
+public class TestQuestionController  {
+	
+	/**
+	 * 通过类选择的 依赖注入的
+	 */
+	@Autowired
+	private OnlineQuestionService questionService;
+	@Autowired
+	private OnlineQuestions onlineQuestions;
 	@Autowired
 	private TeacherChoiceService teacherChoiceService;
+	@Autowired  
+	private HttpSession session; 
+	
+	
 	Map<String,Object> map = new  HashMap<String,Object>();
-	private Logger logger = LoggerFactory.getLogger(TeacherChoiceControl.class);
-	/**
-	 * 选择题库保存
-	 * @param jsonstr
-	 * @return
+	private Logger  logger= LoggerFactory.getLogger(TestQuestionController.class);
+	
+	/***
+	 * 组卷完成之后返回所组的卷子
+	 * 
+	 * 根据paperId 查询 对应的题，返回list
+	 * 试题类型1选择提 2 填空 3 判断4简答5 算法设计
 	 */
-	@RequestMapping(value="/increasePreserve")
-	@ResponseBody
-	public String increasePreserve(OnlineQuestions onlineQuestions,Model model){
-		logger.info("对应的 数据:{}",onlineQuestions);
-		OnlineQuestions userList = teacherChoiceService.choicePreserve(onlineQuestions);
-		return String.valueOf(userList!=null?1:0);
+	@RequestMapping(value="queryQuestionsToShow",produces="text/plain;charset=UTF-8;")
+	public String queryQuestionsToShow (@RequestParam(defaultValue="1") Integer type,Model model) {
+
+		Integer paperId = (Integer) session.getAttribute("paperId");
+		logger.info(paperId+"");
+		type = 1;
+		List<OnlineQuestions> xuanzeList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		
+		for (OnlineQuestions onlineQuestions : xuanzeList) {
+			
+		//分割选择题选项
+		String option = onlineQuestions.getQuestionOption();
+		String[] options = option.split("@@");
+		onlineQuestions.setOptionA(options[0]);
+		onlineQuestions.setOptionB(options[1]);
+		onlineQuestions.setOptionC(options[2]);
+		onlineQuestions.setOptionD(options[3]);
+		}
+		model.addAttribute("xuanzeList", xuanzeList);  //查询的选择题
+		type = 2;
+		List<OnlineQuestions> tiankongList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		model.addAttribute("tiankongList", tiankongList);	//填空题	
+		type = 3;
+		List<OnlineQuestions> panduanList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		model.addAttribute("panduanList", panduanList);	//判断题		
+		type = 4;
+		List<OnlineQuestions> jiandaList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		model.addAttribute("jiandaList", jiandaList);		//简答题
+		type = 5;
+		List<OnlineQuestions> shejiList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		model.addAttribute("shejiList", shejiList);		//算法设计
+		logger.info("queryQuestionsToShow");
+		return "pages/TestpaperInsert";
 	}
 	/**
-	 *  2.填空3 判断4简答 增加
-	 * @param onlineQuestions
+	 * 
+	 * 根据post参数id查询返回试卷
+	 * 试卷管理页面
+	 * @param paperId
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/increaseDecide")
-	@ResponseBody
-	public String increaseDecide(OnlineQuestions onlineQuestions,Model model){
-		logger.info("对应的 数据:{}",onlineQuestions);
-		OnlineQuestions userList = teacherChoiceService.increaseDecide(onlineQuestions);
-		return String.valueOf(userList!=null?1:0);
+	@RequestMapping(value="queryShowtestpaper",produces="text/plain;charset=UTF-8;")
+	public String queryShowtestpaper (@RequestParam(name="paperId")Integer paperId,Model model) {
+
+		logger.info(paperId+"");
+		Integer type = 1;
+		List<OnlineQuestions> xuanzeList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		
+		for (OnlineQuestions onlineQuestions : xuanzeList) {
+			
+		//分割选择题选项
+		String option = onlineQuestions.getQuestionOption();
+		String[] options = option.split("@@");
+		onlineQuestions.setOptionA(options[0]);
+		onlineQuestions.setOptionB(options[1]);
+		onlineQuestions.setOptionC(options[2]);
+		onlineQuestions.setOptionD(options[3]);
+		}
+		model.addAttribute("xuanzeList", xuanzeList);  //查询的选择题
+		type = 2;
+		List<OnlineQuestions> tiankongList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		model.addAttribute("tiankongList", tiankongList);	//填空题	
+		type = 3;
+		List<OnlineQuestions> panduanList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		model.addAttribute("panduanList", panduanList);	//判断题		
+		type = 4;
+		List<OnlineQuestions> jiandaList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		model.addAttribute("jiandaList", jiandaList);		//简答题
+		type = 5;
+		List<OnlineQuestions> shejiList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		model.addAttribute("shejiList", shejiList);		//算法设计
+		logger.info("queryQuestionsToShow");
+		return "pages/showTestpaper";
 	}
-	/**
-	 * 设计题库保存
-	 * @param jsonstr
-	 * @return
-	 */
-	@RequestMapping(value="/increaseDesign")
-	@ResponseBody
-	public String increaseDesign(OnlineQuestions onlineQuestions,Model model){
-		logger.info("对应的 数据:{}",onlineQuestions);
-		OnlineQuestions userList = teacherChoiceService.designPreserve(onlineQuestions);
-		return String.valueOf(userList!=null?1:0);
-	}
-	/**
-	 * 题库删除
-	 * @param id
-	 * @return
-	 * @throws Exception 
-	 */
-	@RequestMapping(value="/deleteChoiceSystem")
-	@ResponseBody
-	public String deleteChoiceSystem(@RequestParam Integer questionId) throws Exception{
-		int result = teacherChoiceService.deletePreserve(questionId);
-		logger.info("要删除的id:{}",questionId);
-		return String.valueOf(result);
-	}
-	
 
 	/**
-	 * 选择题分页
+	 * 选择题分页 
 	 * @param startPage
 	 * @param pageSize
 	 * @param model
@@ -94,12 +151,11 @@ public class TeacherChoiceControl {
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("userNumber", count);
 		logger.info(totalPages+"----一共有多少页数");
-		return  "pages/question/tiku_xuanze";
-
+		return  "html/shoushouzu";
 	}
 	
 	/**
-	 * 选择题内容
+	 * 返回选择题内容
 	 * @param startPage
 	 * @param pageSize
 	 * @param model
@@ -112,38 +168,11 @@ public class TeacherChoiceControl {
 		List<OnlineQuestions> userList = teacherChoiceService.queryChoiceForPage(currentPage, pageSize);
 		model.addAttribute("userList", userList);
 		model.addAttribute("currentPage", currentPage);
-		return  "/question/xuanzeContent";
+		return  "pages/xuanzeAdd";
 
 	}
 	/**
-	 * 选择题修改查询
-	 * @param questionId
-	 * @param model
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/findChoicebyId") 
-	public String  findChoicebyId(Integer questionId,Model model) throws Exception{
-		OnlineQuestions onlineQuestions = teacherChoiceService.queryChoiceManger(questionId);
-		
-		model.addAttribute("onlineQuestions", onlineQuestions);
-	   return  "/question/xuanzeModify";
-	}
-	/**
-	 * 选择题修改
-	 * @param onlineQuestions
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/updateChoiceSystem") 
-	@ResponseBody
-	public String  updateUserSystem(OnlineQuestions onlineQuestions) throws Exception{
-	    int count = teacherChoiceService.updateByPrimaryKeySelective(onlineQuestions);
-	    logger.info("修改的数量是:{}",count);
-	    return  String.valueOf(count);
-	}
-	/**
-	 * 判断题页数查询
+	 * 判断题分页
 	 * @param startPage
 	 * @param pageSize
 	 * @param model
@@ -158,7 +187,7 @@ public class TeacherChoiceControl {
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("userNumber", count);
 		logger.info(totalPages+"----一共有多少页数");
-		return  "/question/tiku_panduan";
+		return  "html/shoushouzu";
 
 	}
 	/**
@@ -168,46 +197,18 @@ public class TeacherChoiceControl {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/selectByAllDecide")
+	@RequestMapping(value="/selectByAllDecide",produces="text/plain;charset=UTF-8;")
 	public String selectByAllDecide(@RequestParam(defaultValue="1") Integer startPage,  @RequestParam(defaultValue="10")Integer pageSize ,Model model){
 		
 		int currentPage=(startPage-1)*pageSize;//通过java 程序 转换为 mysql 需要的数据格式
 		List<OnlineQuestions> userList = teacherChoiceService.queryDecideForPage(currentPage, pageSize);
 		model.addAttribute("userList", userList);
 		model.addAttribute("currentPage", currentPage);
-		return  "/question/panduanContent";
+		return  "pages/panduanAdd";
 
 	}
 	/**
-	 * 判断题修改查询
-	 * @param questionId
-	 * @param model
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/findDecidebyId") 
-	public String  findDecidebyId(Integer questionId,Model model) throws Exception{
-		OnlineQuestions onlineQuestions = teacherChoiceService.queryDecideManger(questionId);
-		model.addAttribute("onlineQuestions", onlineQuestions);
-	   return  "/question/panduanModify";
-	}
-	/**
-	 * 判断,简答题修改
-	 * @param onlineQuestions
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/updateDecideSystem") 
-	@ResponseBody
-	public String  updateDecideSystem(@ModelAttribute OnlineQuestions onlineQuestions) throws Exception{
-	    int count = teacherChoiceService.updateByDecideSelective(onlineQuestions);
-	    logger.info("要修改的内容是:{}",onlineQuestions);
-	    logger.info("修改的数量是:{}",count);
-	    return  String.valueOf(count);
-	}
-	
-	/**
-	 * 填空题页数查询
+	 * 填空题分页
 	 * @param startPage
 	 * @param pageSize
 	 * @param model
@@ -222,7 +223,7 @@ public class TeacherChoiceControl {
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("userNumber", count);
 		logger.info(totalPages+"----一共有多少页数");
-		return  "/question/tiku_tiankong";
+		return  "html/shoushouzu";
 
 	}
 	/**
@@ -239,27 +240,11 @@ public class TeacherChoiceControl {
 		List<OnlineQuestions> userList = teacherChoiceService.queryBlankForPage(currentPage, pageSize);
 		model.addAttribute("userList", userList);
 		model.addAttribute("currentPage", currentPage);
-		return  "/question/tiankongContent";
+		return  "pages/tiankongAdd";
 
 	}
 	/**
-	 * 填空题修改查询
-	 * @param questionId
-	 * @param model
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/findBlankbyId") 
-	public String  findBlankbyId(Integer questionId,Model model) throws Exception{
-		OnlineQuestions onlineQuestions = teacherChoiceService.queryDecideManger(questionId);
-		model.addAttribute("onlineQuestions", onlineQuestions);
-	   return  "/question/tiankongModify";
-	}
-	
-	
-	
-	/**
-	 * 简答题页数查询
+	 * 简答题分页
 	 * @param startPage
 	 * @param pageSize
 	 * @param model
@@ -274,7 +259,7 @@ public class TeacherChoiceControl {
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("userNumber", count);
 		logger.info(totalPages+"----一共有多少页数");
-		return  "/question/tiku_jianda";
+		return  "html/shoushouzu";
 
 	}
 	/**
@@ -291,25 +276,9 @@ public class TeacherChoiceControl {
 		List<OnlineQuestions> userList = teacherChoiceService.querySimpleForPage(currentPage, pageSize);
 		model.addAttribute("userList", userList);
 		model.addAttribute("currentPage", currentPage);
-		return  "/question/jiandaContent";
+		return   "pages/jiandaAdd";
 
 	}
-	/**
-	 * 简答题修改查询
-	 * @param questionId
-	 * @param model
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/findSimplebyId") 
-	public String  findSimplebyId(Integer questionId,Model model) throws Exception{
-		OnlineQuestions onlineQuestions = teacherChoiceService.queryDecideManger(questionId);
-		model.addAttribute("onlineQuestions", onlineQuestions);
-	   return  "/question/jiandaModify";
-	}
-	
-	
-	
 	/**
 	 * 设计题分页
 	 * @param startPage
@@ -326,7 +295,7 @@ public class TeacherChoiceControl {
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("userNumber", count);
 		logger.info(totalPages+"----一共有多少页数");
-		return  "/question/tiku_sheji";
+		return  "html/shoushouzu";
 
 	}
 	
@@ -344,40 +313,7 @@ public class TeacherChoiceControl {
 		List<OnlineQuestions> userList = teacherChoiceService.queryDesignForPage(currentPage, pageSize);
 		model.addAttribute("userList", userList);
 		model.addAttribute("currentPage", currentPage);
-		return  "/question/shejiContent";
+		return   "pages/shejiAdd";
 
 	}
-	/**
-	 * 设计题修改查询
-	 * @param questionId
-	 * @param model
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/findDesignbyId") 
-	public String  findDesignbyId(Integer questionId,Model model) throws Exception{
-		OnlineQuestions onlineQuestions = teacherChoiceService.queryDesignManger(questionId);
-		model.addAttribute("onlineQuestions", onlineQuestions);
-	   return  "/question/shejiModify";
-	}
-	/**
-	 * 设计题修改
-	 * @param onlineQuestions
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/updateDesignSystem") 
-	@ResponseBody
-	public String  updateDesignSystem(OnlineQuestions onlineQuestions) throws Exception{
-	    int count = teacherChoiceService.updateByDesignKeySelective(onlineQuestions);
-	    logger.info("修改的数量是:{}",onlineQuestions);
-	    return  String.valueOf(count);
-	}
-	
-	
-	
-	
-	
-	
-	
 }

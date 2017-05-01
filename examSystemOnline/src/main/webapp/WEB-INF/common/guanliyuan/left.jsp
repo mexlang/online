@@ -26,9 +26,15 @@
                     </a>
                 </li>
                 <li data-value="Performance">
-                    <a href="queryAllTestPaperTitleInfoForAdmin">
+                    <a href="${pageContext.request.contextPath}/ManagerStudent/queryAllStudentExamInfo">
                         <img src="${pageContext.request.contextPath}/img/Performance.png" style="width: 20px;height: 20px;">
                     成绩审核
+                    </a>
+                </li>
+                                <li data-value="Performance">
+                    <a href="${pageContext.request.contextPath}/ManagerStudent/queryAllStudentExamInfo">
+                        <img src="${pageContext.request.contextPath}/img/Performance.png" style="width: 20px;height: 20px;">
+                    考试审核
                     </a>
                 </li>
             </ul>

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class onlineExaminInfor {
     private Integer studentId;
+    
+    private String studentName;
 
     private Date examinStrattime;
 
@@ -137,4 +139,14 @@ public class onlineExaminInfor {
     public void setPaperId(Integer paperId) {
         this.paperId = paperId;
     }
+
+	public String getStudentName() {
+		return studentName;
+	}
+
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+    
+    
 }

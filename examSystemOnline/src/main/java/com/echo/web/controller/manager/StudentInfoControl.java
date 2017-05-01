@@ -18,14 +18,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.echo.web.model.OnlineStudent;
 import com.echo.web.model.OnlineTeacher;
+import com.echo.web.model.onlineExaminInfor;
 import com.echo.web.serivce.OnlineTeacherService;
 import com.echo.web.serivce.onStudentServise;
+import com.echo.web.serivce.onlineExaminInforService;
 import com.echo.web.util.common.GetStudentsExclContents;
 import com.echo.web.util.common.MD5Helper;
 
@@ -44,7 +47,10 @@ public class StudentInfoControl {
 	private OnlineStudent student;
 	@Autowired
 	private GetStudentsExclContents excel;
-	
+	@Autowired
+	private onlineExaminInfor examInfo;
+	@Autowired
+	private onlineExaminInforService examInfoService;
 	/***
 	 * 跳转到学生的修改信息页面
 	 * @param teacher
@@ -207,5 +213,43 @@ public class StudentInfoControl {
         fileInputStream.close();
         outputStream.close();
 	} 
+	
+	
+	/**
+	 * 查询学生成绩列表分页
+	 */
+	@RequestMapping("queryAllStudentExamInfo")
+	public String queryAllStudentExamInfo(
+			@RequestParam(defaultValue="1")Integer startPage,
+			@RequestParam(defaultValue="3")Integer pageSize,
+			Model model) {
+		int number = examInfoService.queryonlineExaminInforForPageCount();
+	 int totalPages=(number%pageSize==0?0:1)+(number/pageSize);
+	 Integer type = 0;
+	 List<onlineExaminInfor> resultList = examInfoService.queryonlineExaminInforForPage(type, startPage, pageSize);
+	 model.addAttribute("resultList", resultList);
+	 model.addAttribute("studentNumber", number);
+	 model.addAttribute("totalPages", totalPages);
+	 model.addAttribute("pageSize", pageSize);
+	 model.addAttribute("startPage", startPage);
+		return "pages/guanliyuan/Performance";
+	}
+	
+	
+	/**
+	 * 查询学生成绩列表
+	 */
+	@RequestMapping("StudentExamInfo")
+	public String StudentExamInfo(
+			@RequestParam(defaultValue="1")Integer startPage,
+			@RequestParam(defaultValue="3")Integer pageSize,
+			Model model) {
+		 int currentPage = (startPage - 1)*pageSize;
+		 Integer type = 0;
+	 List<onlineExaminInfor> resultList = examInfoService.queryonlineExaminInforForPage(type, currentPage, pageSize);
+	 model.addAttribute("resultList", resultList);
+	 model.addAttribute("currentPage", currentPage);
+		return "pages/sutdentPerformance";
+	}
 	
 }

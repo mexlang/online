@@ -9,7 +9,7 @@
     <title>学生信息导入</title>
     
     <!-- modal 引入 -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
+<!--     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css"> -->
 <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>

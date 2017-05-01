@@ -76,7 +76,9 @@ public class TestQuestionController  {
 		onlineQuestions.setOptionB(options[1]);
 		onlineQuestions.setOptionC(options[2]);
 		onlineQuestions.setOptionD(options[3]);
+		
 		}
+		
 		model.addAttribute("xuanzeList", xuanzeList);  //查询的选择题
 		type = 2;
 		List<OnlineQuestions> tiankongList = questionService.queryOnlineQuestionsToShow(type, paperId);
@@ -102,7 +104,7 @@ public class TestQuestionController  {
 	 * @return
 	 */
 	@RequestMapping(value="queryShowtestpaper",produces="text/plain;charset=UTF-8;")
-	public String queryShowtestpaper (@RequestParam(name="paperId")Integer paperId,Model model) {
+	public String queryShowtestpaper (@RequestParam("paperId")Integer paperId,Model model) {
 
 		logger.info(paperId+"");
 		Integer type = 1;
@@ -133,6 +135,49 @@ public class TestQuestionController  {
 		model.addAttribute("shejiList", shejiList);		//算法设计
 		logger.info("queryQuestionsToShow");
 		return "pages/showTestpaper";
+	}
+	
+	/**
+	 * 
+	 *id查询返回试卷
+	 * 试卷审核页面
+	 * @param paperId
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="queryShowtestpaperForAdmin")
+	public String queryShowtestpaperForAdmin (@RequestParam("paperId")Integer paperId,Model model) {
+
+		logger.info(paperId+"");
+		Integer type = 1;
+		List<OnlineQuestions> xuanzeList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		
+		for (OnlineQuestions onlineQuestions : xuanzeList) {
+			
+		//分割选择题选项
+		String option = onlineQuestions.getQuestionOption();
+		String[] options = option.split("@@");
+		onlineQuestions.setOptionA(options[0]);
+		onlineQuestions.setOptionB(options[1]);
+		onlineQuestions.setOptionC(options[2]);
+		onlineQuestions.setOptionD(options[3]);
+		}
+		model.addAttribute("xuanzeList", xuanzeList);  //查询的选择题
+		type = 2;
+		List<OnlineQuestions> tiankongList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		model.addAttribute("tiankongList", tiankongList);	//填空题	
+		type = 3;
+		List<OnlineQuestions> panduanList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		model.addAttribute("panduanList", panduanList);	//判断题		
+		type = 4;
+		List<OnlineQuestions> jiandaList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		model.addAttribute("jiandaList", jiandaList);		//简答题
+		type = 5;
+		List<OnlineQuestions> shejiList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		model.addAttribute("shejiList", shejiList);		//算法设计
+		model.addAttribute("paperId", paperId);
+		logger.info("queryQuestionsToShow");
+		return "pages/guanliyuan/looktest";
 	}
 
 	/**
