@@ -33,6 +33,7 @@
             </div>
             <div class="page-content" style="padding: 0">
                <!--  -->
+
                
                               <table>
                     <tr bgcolor="#D7D7D7">
@@ -58,35 +59,32 @@
                     </c:forEach> --%>
                     </tbody>
 </table>
-       
-     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>     
+     
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">成绩审核</h4>
+                <h4 class="modal-title" id="myModalLabel">成绩报告</h4>
             </div>
-            <div class="modal-body">在这里添加一些文本</div>
-<!--             <div class="modal-footer"> -->
-<!--                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> -->
-<!--                 <button type="button" class="btn btn-primary">提交更改</button> -->
-<!--             </div> -->
+            <div class="modal-body" id="insertchengjifenxi">数据加载中...</div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
-</div>
+</div>    
+             <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
        
        
        
           
- <div  style="text-align: center" >
+
+    	<!-- 分页插件使用 -->
+	<script src="${pageContext.request.contextPath}/js/bootstrap-paginator.min.js"></script>
+                <div  style="text-align: center" >
 	<ul id="pageLimit"   class="pagination pagination-lg"></ul>
 </div>
-               
-               <!--  -->
             </div>
         </div>
     </div>
@@ -95,18 +93,7 @@
 </body>
 
 
-<script type="text/javascript">
 
-function chengjibaogao(studentId) {
-	$.post("${pageContext.request.contextPath}/ManagerStudent/studentExamAnalyze",
-			{studentId:studentId},
-			function(data){
-				$("#insertchengjifenxi").empty().append(data);
-			});
-}
-
-
-</script>
 
 <script type="text/javascript">
 var pageSizeTemp='${pageSize}';

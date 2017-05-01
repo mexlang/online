@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class onlineExaminInfor {
+	private Integer Id;
+	
     private Integer studentId;
     
     private String studentName;
@@ -146,6 +148,14 @@ public class onlineExaminInfor {
 
 	public void setStudentName(String studentName) {
 		this.studentName = studentName;
+	}
+
+	public Integer getId() {
+		return Id;
+	}
+
+	public void setId(Integer id) {
+		Id = id;
 	}
     
     

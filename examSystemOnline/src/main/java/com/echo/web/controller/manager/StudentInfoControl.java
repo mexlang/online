@@ -266,10 +266,49 @@ public class StudentInfoControl {
 	 */
 	@RequestMapping("studentExamAnalyze")
 	public String studentExamAnalyze(
-			@RequestParam("studentId") Integer studentId) {
-//		StuService.
-		logger.info("以生成成绩分析");
-		return "";
+			@RequestParam("infoId") Integer infoId,
+			Model model) {
+		onlineExaminInfor examSelect = examInfoService.queryById(infoId);
+		Integer paperId = examSelect.getPaperId();  //试卷Id
+		Integer studentId = examSelect.getStudentId();
+		Integer studentTotalScope = examSelect.getStudentTotalscope();
+		List<onlineExaminInfor> result = examInfoService.getAll();
+		List<onlineExaminInfor> selectResult = new ArrayList<onlineExaminInfor>(); //筛选和试卷Id相等的所有对象
+		for (onlineExaminInfor examInfo: result) {
+			if (examInfo.getPaperId().equals(paperId) ) {
+				selectResult.add(examInfo);
+			}
+		}
+		int TotalScope = 0; //所有人的分数
+		int number = selectResult.size(); //总人数
+		for (onlineExaminInfor examInfo: selectResult) {
+			Integer scope = examInfo.getStudentTotalscope();
+			TotalScope = TotalScope + scope;
+		}
+		double ave = 0 ;
+		if (number != 0)
+		ave = TotalScope/number;
+//		logger.info("已生成成绩分析："+ studentId );
+		model.addAttribute("examPeopleCount", number);
+		model.addAttribute("average", ave);
+		model.addAttribute("paperId", paperId);
+		model.addAttribute("studentId", studentId);
+		model.addAttribute("studentTotalScope", studentTotalScope);
+		model.addAttribute("id", infoId);
+		return "pages/examFenxi";
 	}
+
+	/**
+	 * 查询学生成绩列表分页
+	 */
+	@RequestMapping("setFlag")
+	public String setFlag(
+			@RequestParam("flag") Integer flag,
+			@RequestParam("infoId") Integer infoId) {
+		examInfoService.setFlag(flag, infoId);
+		logger.info("setFlagId" + infoId);
+		return "redirect:queryStudent";
+	}
+	
 	
 }

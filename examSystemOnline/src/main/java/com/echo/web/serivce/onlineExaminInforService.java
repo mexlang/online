@@ -58,5 +58,28 @@ public class onlineExaminInforService {
 			 return number;
 		  }
 		  
+		  /**
+		   * 查询所有
+		   * @return
+		   */
+		  public List<onlineExaminInfor> getAll() {
+			  List<onlineExaminInfor> list = questionMapper.getAll();
+			  return list;
+		  }
+		  
+		  /**
+		   * 根据编号查询
+		   */
+		  public onlineExaminInfor queryById(Integer id) {
+			  onlineExaminInfor result = questionMapper.queryById(id);
+			return result;
+		  }
   
+		  
+		  /**
+		   * 设置审核标志
+		   */
+		  public void setFlag(Integer flag,Integer id) {
+			  questionMapper.setFlag(flag, id);
+		  }
 }

@@ -19,4 +19,16 @@ public interface onlineExaminInforMapper {
      */
     public List<onlineExaminInfor> queryonlineExaminInforForPage(Integer startPage,Integer pageSize);
     public  int queryonlineExaminInforForPageCount();
+    
+    public List<onlineExaminInfor> getAll ();
+    onlineExaminInfor queryById(Integer id);
+    
+    /***
+     * 设置审核字段
+     * 1： 审核标志  2：id
+     * 
+     * @param flag
+     * @param id
+     */
+    void setFlag (Integer flag,Integer id);
 }

@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.echo.web.mapper.onlineExaminInforMapper" >
   <resultMap id="BaseResultMap" type="com.echo.web.model.onlineExaminInfor" >
+    <result column="id" property="Id" jdbcType="INTEGER" />
     <result column="student_id" property="studentId" jdbcType="INTEGER" />
     <result column="examin_strattime" property="examinStrattime" jdbcType="TIMESTAMP" />
     <result column="examin_endtime" property="examinEndtime" jdbcType="TIMESTAMP" />
@@ -80,8 +81,42 @@
        #{0},  #{1}
   </select>
   
+  
+  
       <!--  查询当前数据总和 -->
     <select id="queryonlineExaminInforForPageCount" resultType="int">
     select  count(1)  from `online_examin_infor`
   </select>
+  
+          <!-- 成绩分析 -->
+ <select id="getAll" resultMap="BaseResultMap" > 
+	SELECT 
+	*
+	FROM  
+	`online_examin_infor`
+	     
+	 
+  </select>
+   
+   
+             <!-- 根据Id查询 -->
+ <select id="queryById" resultMap="BaseResultMap" > 
+	SELECT 
+	*
+	FROM  
+	`online_examin_infor`
+	     where  id = #{0}
+	 
+  </select>
+  
+  <update id="setFlag" >
+  
+  UPDATE `online_examin_infor` 
+  SET
+   `examin_flag`=#{0}  
+  WHERE 
+   id= #{1}
+  
+  </update>
+  
 </mapper>
