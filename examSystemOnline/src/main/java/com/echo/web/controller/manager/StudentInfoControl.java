@@ -247,9 +247,29 @@ public class StudentInfoControl {
 		 int currentPage = (startPage - 1)*pageSize;
 		 Integer type = 0;
 	 List<onlineExaminInfor> resultList = examInfoService.queryonlineExaminInforForPage(type, currentPage, pageSize);
+	 for (onlineExaminInfor exam : resultList) {
+		 Integer studentId = exam.getStudentId();
+		if( studentId != null) {
+			OnlineStudent result = null;
+			 result = StuService.selectStudent(studentId);
+		exam.setStudentName(result.getStudentName());
+		}
+	 }
 	 model.addAttribute("resultList", resultList);
 	 model.addAttribute("currentPage", currentPage);
 		return "pages/sutdentPerformance";
+	}
+	
+	/***
+	 * 根据学生Id生成试卷分析
+	 * @return
+	 */
+	@RequestMapping("studentExamAnalyze")
+	public String studentExamAnalyze(
+			@RequestParam("studentId") Integer studentId) {
+//		StuService.
+		logger.info("以生成成绩分析");
+		return "";
 	}
 	
 }

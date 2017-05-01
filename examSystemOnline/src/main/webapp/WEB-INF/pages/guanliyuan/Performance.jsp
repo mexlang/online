@@ -37,12 +37,11 @@
                               <table>
                     <tr bgcolor="#D7D7D7">
                         <td>序号</td>
-                        <td>姓名</td>
-                        <td>学号</td>
                         <td>考试</td>
+                        <td>学号</td>
+                        <td>姓名</td>
                         <td>成绩</td>
-                        <td>成绩状态</td>
-                        <td>操作</td>
+                        <td>管理</td>
                     </tr>
                     <tbody  id="insertTeable">
              <%--   <c:forEach items="resu" var="resultList" varStatus="ites">
@@ -59,6 +58,29 @@
                     </c:forEach> --%>
                     </tbody>
 </table>
+       
+     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>     
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">成绩审核</h4>
+            </div>
+            <div class="modal-body">在这里添加一些文本</div>
+<!--             <div class="modal-footer"> -->
+<!--                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> -->
+<!--                 <button type="button" class="btn btn-primary">提交更改</button> -->
+<!--             </div> -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+       
+       
+       
           
  <div  style="text-align: center" >
 	<ul id="pageLimit"   class="pagination pagination-lg"></ul>
@@ -75,6 +97,13 @@
 
 <script type="text/javascript">
 
+function chengjibaogao(studentId) {
+	$.post("${pageContext.request.contextPath}/ManagerStudent/studentExamAnalyze",
+			{studentId:studentId},
+			function(data){
+				$("#insertchengjifenxi").empty().append(data);
+			});
+}
 
 
 </script>

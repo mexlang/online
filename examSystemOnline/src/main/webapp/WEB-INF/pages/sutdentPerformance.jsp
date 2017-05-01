@@ -2,6 +2,8 @@
 <%@  taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+ 
+
                <c:forEach items="${resultList}" var="result" varStatus="ites">
                     <tr>
                     <td>${ites.count}</td>
@@ -9,9 +11,11 @@
                     <td>${result.studentId}</td>
                     <td>${result.studentName}</td>
                     <td>${result.studentTotalscope}</td>
-                    <td>${result.examinFlag}</td>
-                    <td>删除</td>
-                    
-                    
-                    </tr>
+                    <td>
+                    <button data-toggle="modal" data-target="#myModal" onclick="chengjibaogao('${result.studentId}');">生成成绩报告</button>
+                    </td>
+                      </tr>
                     </c:forEach>
+
+                 
+                    

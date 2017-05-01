@@ -31,12 +31,12 @@
                     成绩审核
                     </a>
                 </li>
-                                <li data-value="Performance">
+<%--                                 <li data-value="Performance">
                     <a href="${pageContext.request.contextPath}/ManagerStudent/queryAllStudentExamInfo">
                         <img src="${pageContext.request.contextPath}/img/Performance.png" style="width: 20px;height: 20px;">
-                    考试审核
+                   成绩报告
                     </a>
-                </li>
+                </li> --%>
             </ul>
         </div>
     </div>

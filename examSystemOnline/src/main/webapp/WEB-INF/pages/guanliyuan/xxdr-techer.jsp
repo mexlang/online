@@ -8,9 +8,7 @@
     <meta charset="UTF-8">
     <title>教师信息导入</title>
  
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js">
-	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 
 <jsp:include page="../../common/guanliyuan/topbase.jsp"></jsp:include>
 
 
@@ -48,33 +46,7 @@
 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="toAdd();">
     添加教师
 </button>
-<!-- 模态框（Modal） -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                   教师管理
-                </h4>
-            </div>
-            <div class="modal-body" id="modaldatainsert">
-                在这里添加一些文本
-            </div>
-<!--             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                </button>
-                <button type="button" class="btn btn-primary">
-                    提交更改
-                </button>
-            </div> -->
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>			
-                
-                
+    
                 <table>
                     <tr bgcolor="#D7D7D7">
                         <td>姓名</td>
@@ -82,17 +54,34 @@
                         <td>电话</td>
                         <td>操作</td>
                     </tr>
-<!--                     <tr> -->
-<!--                         <td class="name"><input type="checkbox" class="checkbox"><a>张三</a></td> -->
-<!--                         <td class="idCard">12345678890</td> -->
-<!--                         <td class="class">一班</td> -->
-<!--                         <td class="ksBtn"><a href="javaScript:void (0)">点击修改</a></td> -->
-<!--                     </tr> -->
+
 <tbody id="insertTeacher">
 
 </tbody>  
 
                 </table>
+                
+  	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>              
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					教师管理
+				</h4>
+			</div>
+			<div class="modal-body" id="modaldatainsert">
+				在这里添加一些文本
+			</div>
+
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
 <div  style="text-align: center" >
 	<ul id="pageLimit"   class="pagination pagination-lg"></ul>
 </div>

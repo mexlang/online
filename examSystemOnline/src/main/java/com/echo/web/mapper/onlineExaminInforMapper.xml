@@ -9,7 +9,7 @@
     <result column="examin_flag" property="examinFlag" jdbcType="INTEGER" />
     <result column="examin_total_time" property="examinTotalTime" jdbcType="INTEGER" />
     <result column="paper_id" property="paperId" jdbcType="INTEGER" />
-    <result column="student_name" property="studentName" jdbcType="String" />
+<!--     <result column="student_name" property="studentName" jdbcType="String" /> -->
   </resultMap>
   <insert id="insert" parameterType="com.echo.web.model.onlineExaminInfor" >
     insert into online_examin_infor (student_id, examin_strattime, examin_endtime, 
@@ -70,16 +70,12 @@
   </insert>
   
          <!-- 根据limit限制查询信息 -->
-    <select id="queryonlineExaminInforForPage" resultType="com.echo.web.model.OnlineQuestions" >
+    <select id="queryonlineExaminInforForPage" resultMap="BaseResultMap" >
 	SELECT 
 	*
 	FROM  
-	`online_examin_infor` b 
-	    LEFT JOIN    `online_student` a 
-	    ON 
-	    b.`student_id` = a.`student_id`
+	`online_examin_infor`
 	     
-	    ORDER BY b.`paper_id`   
 	      limit 
        #{0},  #{1}
   </select>
