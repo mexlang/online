@@ -85,6 +85,10 @@
 <div  style="text-align: center" >
 	<ul id="pageLimit"   class="pagination pagination-lg"></ul>
 </div>
+    	<!-- 分页插件使用 -->
+	<script src="${pageContext.request.contextPath}/js/bootstrap-paginator.min.js"></script>
+    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
             </div>
         </div>
     </div>
