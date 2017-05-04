@@ -361,4 +361,44 @@ public class TestQuestionController  {
 		return   "pages/shejiAdd";
 
 	}
+	
+	
+	
+	/***
+	 * 手动组卷的时候
+	 * 动态更新已添加的试题数
+	 * 
+	 * 根据paperId 查询 对应的题，返回list
+	 * 试题类型1选择提 2 填空 3 判断4简答5 算法设计
+	 */
+	@RequestMapping(value="queryQuestionsNumber",produces="text/plain;charset=UTF-8;")
+	@ResponseBody
+	public String queryQuestionsNumber (@RequestParam(defaultValue="1") Integer type,Model model) {
+
+		Integer paperId = (Integer) session.getAttribute("paperId");
+		logger.info(paperId+"");
+		type = 1;
+		List<OnlineQuestions> xuanzeList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		int xuanzeNumber = xuanzeList.size();
+		model.addAttribute("xuanzeNumber", xuanzeNumber);  //查询的选择题数目
+		type = 2;
+		List<OnlineQuestions> tiankongList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		int tiankongNum = tiankongList.size();
+		model.addAttribute("tiankongNumber", tiankongNum);	//填空题	
+		type = 3;
+		List<OnlineQuestions> panduanList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		int panduanNum = panduanList.size();
+		model.addAttribute("panduanNumber", panduanNum);	//判断题		
+		type = 4;
+		List<OnlineQuestions> jiandaList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		int jiandaNum = jiandaList.size();
+		model.addAttribute("jiandaNumber", jiandaNum);		//简答题
+		type = 5;
+		List<OnlineQuestions> shejiList = questionService.queryOnlineQuestionsToShow(type, paperId);
+		int shejiNum = shejiList.size();
+		model.addAttribute("shejiList", shejiNum);		//算法设计
+		logger.info("queryQuestionsToShowNum");
+		return "pages/TestpaperInsert";
+	}
+	
 }

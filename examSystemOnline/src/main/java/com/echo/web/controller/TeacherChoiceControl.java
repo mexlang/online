@@ -19,6 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.echo.web.model.OnlineQuestions;
 import com.echo.web.serivce.TeacherChoiceService;
 
+
+/***
+ * 
+ * 教师端：题库的相关操作
+ * @author Administrator
+ *
+ */
 @Controller
 @RequestMapping("/teacherChoice")
 public class TeacherChoiceControl {

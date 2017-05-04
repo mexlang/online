@@ -216,7 +216,7 @@ public class onlineQuestionTestpaperController  {
 	}
 	/**
 	 * 返回所有考试信息
-	 * 试卷管理的初始列表
+	 * 教师端：试卷管理的初始列表
 	 * @param model
 	 * @return
 	 */
@@ -309,9 +309,12 @@ public class onlineQuestionTestpaperController  {
 		return String.valueOf(result);
 	}
 	
+	
+	
+	
 	/**
 	 * 返回所有考试信息
-	 * 管理员端的试卷审核列表
+	 * 管理员端：试卷审核列表
 	 * @param model
 	 * @return
 	 */
@@ -324,7 +327,7 @@ public class onlineQuestionTestpaperController  {
 	
 	/***
 	 * 
-	 * 审核考试
+	 * 管理员端：审核考试
 	 * @param testpaper
 	 * @param model
 	 * @return

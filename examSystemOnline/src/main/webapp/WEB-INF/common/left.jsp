@@ -19,35 +19,35 @@
                     </a>
                     <ul class="submenu">
                         <li class="">
-                            <a href="tiku_xuanze.jsp">
+                            <a href="${pageContext.request.contextPath}/xuanze">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 选择题
                             </a>
                             <b class="arrow"></b>
                         </li>
                         <li class="">
-                            <a href="tiku_panduan.jsp">
+                            <a href="${pageContext.request.contextPath}/panduan">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 判断题
                             </a>
                             <b class="arrow"></b>
                         </li>
                         <li class="">
-                            <a href="tiku_tiankong.jsp">
+                            <a href="${pageContext.request.contextPath}/tiankong">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 填空题
                             </a>
                             <b class="arrow"></b>
                         </li>
                         <li class="">
-                            <a href="tiku_jianda.jsp">
+                            <a href="${pageContext.request.contextPath}/jianda">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 简答题
                             </a>
                             <b class="arrow"></b>
                         </li>
                         <li class="">
-                            <a href="tiku_sheji.jsp">
+                            <a href="${pageContext.request.contextPath}/sheji">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 算法设计题
                             </a>

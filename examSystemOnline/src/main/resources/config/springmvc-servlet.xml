@@ -152,6 +152,14 @@
 	<mvc:view-controller path="/student" view-name="pages/student/xsdlndex"/>
 	<mvc:view-controller path="/login" view-name="pages/student/login"/>
 	
+	<!--  http://localhost:8080/examSystemOnline/xuanze    -->
+	<!--  localhost:8080/examSystemOnline/tiankong    -->
+	<mvc:view-controller path="/xuanze" view-name="html/tiku_xuanze"/>
+	<mvc:view-controller path="/tiankong" view-name="html/tiku_tiankong"/>
+	<mvc:view-controller path="/jianda" view-name="html/tiku_jianda"/>
+	<mvc:view-controller path="/sheji" view-name="html/tiku_sheji"/>
+	<mvc:view-controller path="/panduan" view-name="html/tiku_panduan"/>
+	<!--  -->
 	<mvc:view-controller path="/guanli/Index" view-name="pages/guanliyuan/glyIndex"/>
        
        
