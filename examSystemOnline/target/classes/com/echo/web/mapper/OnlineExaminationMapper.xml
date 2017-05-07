@@ -6,7 +6,9 @@
     <result column="paper_id" property="paperId" jdbcType="INTEGER" />
     <result column="question_id" property="questionId" jdbcType="INTEGER" />
     <result column="examintion_result" property="examintionResult" jdbcType="INTEGER" />
+    <result column="examintion_answer" property="examintionAnswer" jdbcType="VARCHAR" />
     <result column="examintion_score" property="examintionScore" jdbcType="INTEGER" />
+    <result column="exam_flag" property="examFlag" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.echo.web.model.OnlineExamination" extends="BaseResultMap" >
     <result column="examintion_answer" property="examintionAnswer" jdbcType="LONGVARCHAR" />
@@ -81,4 +83,20 @@
     where  student_id = #{studentId,jdbcType=INTEGER} and paper_id = #{paperId,jdbcType=INTEGER} and question_id =  #{questionId,jdbcType=INTEGER}
   
   </update>
+  
+  <!-- 查询所有考试的试卷  -->
+  <select id="selectAll" resultMap="BaseResultMap">
+  
+  SELECT * FROM `online_examination`  GROUP BY `paper_id`
+  
+  </select>
+  
+  <!-- 查询对应学生的试卷 -->
+  <select id="selectAllBypaperId" resultMap="BaseResultMap">
+  
+  SELECT * FROM `online_examination`  
+WHERE `student_id` = #{0}
+  
+  </select>
+  
 </mapper>

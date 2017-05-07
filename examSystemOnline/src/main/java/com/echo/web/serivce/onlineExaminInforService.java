@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import sun.util.logging.resources.logging;
 
+import com.echo.web.mapper.OnlineExaminationMapper;
 import com.echo.web.mapper.onlineExaminInforMapper;
+import com.echo.web.model.OnlineExamination;
 import com.echo.web.model.onlineExaminInfor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -30,7 +32,8 @@ public class onlineExaminInforService {
 
 	@Resource
 	private  RedisTemplate  redisTemplate;
-		
+	@Autowired
+	private OnlineExaminationMapper examnationMapper;
 	/**
 	 * 保存数据
 	 * @param onlineExaminInfor
@@ -82,4 +85,24 @@ public class onlineExaminInforService {
 		  public void setFlag(Integer flag,Integer id) {
 			  questionMapper.setFlag(flag, id);
 		  }
+		  
+		  /**
+		   * 教师端： 试卷批改的列表查询
+		   */
+		  
+		  public List<OnlineExamination> queryAll ()  {
+			  List<OnlineExamination> list = examnationMapper.selectAll();
+			  return list;
+		  }
+		  
+		  /**
+		   * 教师端：试卷批改  批改数据
+		   * @param studentId
+		   * @return
+		   */
+		  public List<OnlineExamination> queryBystudentId (Integer studentId) {
+			  List<OnlineExamination> list = examnationMapper.selectAllBypaperId(studentId);
+			  return list;
+		  }
+		  
 }

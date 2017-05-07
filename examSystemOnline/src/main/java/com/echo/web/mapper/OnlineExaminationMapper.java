@@ -17,6 +17,9 @@ public interface OnlineExaminationMapper {
 	int selcetBystudentandPaperandQues(@Param("studentId")Integer studentId, @Param("paperId")Integer paperId,
 			@Param("questionId")Integer questionId);
 	void updatepaper(OnlineExamination examination);
+	
+	List<OnlineExamination> selectAllBypaperId (Integer studentId);
+	List<OnlineExamination> selectAll ();
 
 	
 }

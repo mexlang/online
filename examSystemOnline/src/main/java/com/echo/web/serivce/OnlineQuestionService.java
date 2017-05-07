@@ -33,5 +33,15 @@ public class OnlineQuestionService {
 		  List<OnlineQuestions> list = questionMapper.queryOnlineQuestionsToShow(type, paperId);
 		  return list;
 	}
+	  
+	  public List<OnlineQuestions> queryOnlineQuestions (Integer paperId) {
+		  List<OnlineQuestions> list = questionMapper.selectByPaperId(paperId);
+		  return list;
+	  }
+	  
+	  public OnlineQuestions queryOneOnlineQuestions (Integer questionId) {
+		  OnlineQuestions list = questionMapper.selectByPrimaryKey(questionId);
+		  return list;
+	  }
 
 }

@@ -12,8 +12,20 @@ public class OnlineExamination {
     private Integer examintionScore;
 
     private String examintionAnswer;
+    
+    private Integer examFlag;
+    
+    
 
-    public Integer getStudentId() {
+    public Integer getExamFlag() {
+		return examFlag;
+	}
+
+	public void setExamFlag(Integer examFlag) {
+		this.examFlag = examFlag;
+	}
+
+	public Integer getStudentId() {
         return studentId;
     }
 

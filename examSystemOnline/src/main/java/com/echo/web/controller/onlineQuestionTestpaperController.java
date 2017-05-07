@@ -3,6 +3,7 @@ package com.echo.web.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -26,9 +27,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 
+import com.echo.web.model.OnlineExamination;
+import com.echo.web.model.OnlineQuestions;
 import com.echo.web.model.onlineExaminInfor;
 import com.echo.web.model.onlineQuestionsTestpaper;
 import com.echo.web.model.onlineTestpaper;
+import com.echo.web.serivce.OnlineQuestionService;
 import com.echo.web.serivce.OnlineTestpaperService;
 import com.echo.web.serivce.onlineExaminInforService;
 import com.echo.web.serivce.onlineQuestionTestpapaerService;
@@ -67,6 +71,8 @@ public class onlineQuestionTestpaperController  {
 	private onlineQuestionsTestpaper testpaper;
 	@Autowired
 	private OnlineTestpaperService testpaperBaseService;
+	@Autowired
+	private OnlineQuestionService questionService;
 	
 	
 	
@@ -338,5 +344,86 @@ public class onlineQuestionTestpaperController  {
 		logger.info("更新考试信息："+ result);
 		return "redirect:queryAllTestPaperTitleInfoForAdmin";
 	}
-
+	
+	/***
+	 * 教师端： 批改试卷的列表
+	 */
+	@RequestMapping("selectAllExamList")
+	public String selectAllExamList(Model model) {
+		List<OnlineExamination> list = examInfoService.queryAll(); 
+		model.addAttribute("resultList", list);
+		return "html/pigai";
+	}
+	
+	/**
+	 * 教师端： 批改试卷的详细
+	 */
+	@RequestMapping("selectExamListInfo")
+	public String selectExamListInfo(Model model,
+			@RequestParam Integer studentId,
+			@RequestParam Integer paperId) {
+		List<OnlineExamination> list = examInfoService.queryBystudentId(studentId);
+		
+		List<OnlineQuestions> xuanzeList = new ArrayList<OnlineQuestions>();
+		List<OnlineQuestions> tiankongList = new ArrayList<OnlineQuestions>();
+		List<OnlineQuestions> panduanList = new ArrayList<OnlineQuestions>();
+		List<OnlineQuestions> jiandaList = new ArrayList<OnlineQuestions>();
+		List<OnlineQuestions> shejiList = new ArrayList<OnlineQuestions>();
+		
+		for (OnlineExamination exam: list) {
+			Integer questionId = exam.getQuestionId();
+			if (questionId == 0){
+				break;
+			}
+			String userAnswer = exam.getExamintionAnswer();
+			int type ;
+			OnlineQuestions result = questionService.queryOneOnlineQuestions(questionId);
+			if (userAnswer != null)
+			result.setQuestionUserAnswer(userAnswer);
+			type = result.getQuestionType();  //获取试题类型
+			switch (type)
+			{
+			case 1 :
+				if (result.getQuestionAnswer() == userAnswer) {	
+					result.setExamintionResult("1");  //2错误 1正确 0待定
+				} else {
+					result.setExamintionResult("2");
+				}
+				//分割选择题选项
+				String option = result.getQuestionOption();
+				String[] options = option.split("@@");
+				result.setOptionA(options[0]);
+				result.setOptionB(options[1]);
+				result.setOptionC(options[2]);
+				result.setOptionD(options[3]);
+				xuanzeList.add(result);
+				break;
+			case 2 :
+				tiankongList.add(result);
+				break;
+			case 3 :
+				if (result.getQuestionAnswer() == userAnswer) {	
+					result.setExamintionResult("1");  //2错误 1正确 0待定
+				} else {
+					result.setExamintionResult("2");
+				}
+				panduanList.add(result);
+				break;
+			case 4 :
+				jiandaList.add(result);
+				break;
+			case 5 :
+				shejiList.add(result);
+				break;
+			}
+		}
+			model.addAttribute("xuanzeList", xuanzeList); 		 //查询的选择题
+			model.addAttribute("tiankongList", tiankongList);	//填空题	
+			model.addAttribute("panduanList", panduanList);		//判断题		
+			model.addAttribute("jiandaList", jiandaList);		//简答题
+			model.addAttribute("shejiList", shejiList);			//算法设计
+//			
+			
+		return "html/shijuanpigai_1";
+	}
 }

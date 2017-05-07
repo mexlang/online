@@ -51,7 +51,29 @@ public class OnlineQuestions {
     
     private String questionPhoto2;
     
-    public String getQuestionPhoto1() {
+    private String questionUserAnswer;
+    
+    private String examintionResult;  //试卷批改结果
+    
+    
+    
+    public String getExamintionResult() {
+		return examintionResult;
+	}
+
+	public void setExamintionResult(String examintionResult) {
+		this.examintionResult = examintionResult;
+	}
+
+	public String getQuestionUserAnswer() {
+		return questionUserAnswer;
+	}
+
+	public void setQuestionUserAnswer(String questionUserAnswer) {
+		this.questionUserAnswer = questionUserAnswer;
+	}
+
+	public String getQuestionPhoto1() {
 		return questionPhoto1;
 	}
 

@@ -90,7 +90,7 @@
                 </li>
                 <!--试卷批改-->
                 <li class="">
-                    <a href="${pageContext.request.contextPath}/pigai">
+                    <a href="${pageContext.request.contextPath}/TestPaper/selectAllExamList">
                         <!--<i class="menu-icon fa fa-edit"></i>-->
                         <img src="${pageContext.request.contextPath}/images/tb/pigai2.png" style="width: 20px; height: 20px;">&nbsp;
                             <span class="menu-text">
