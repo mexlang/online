@@ -129,11 +129,6 @@
 		<property name="validator" ref="validator" />
 	</bean>
 	
-	 <!--swagger  -->
-	    <mvc:annotation-driven/>
-	    <bean class="com.echo.web.util.common.SwaggerConfig" />
-    <!-- end -->
-	
 
 	
 	
@@ -163,10 +158,6 @@
 	<mvc:view-controller path="/guanli/Index" view-name="pages/guanliyuan/glyIndex"/>
        
        
-       <!-- springmvc 拦截器 -->
-			<mvc:interceptors>
- <mvc:interceptor><mvc:mapping path="/bkUser/*"/> <bean class="com.echo.web.handler.SpringMVCInterceptor"/> </mvc:interceptor>
-</mvc:interceptors>
 
 
 
